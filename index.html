@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bihar Services Hub — 100+ Links</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#dfffd9, #b6f0b3);
+    }
+    header {
+      background: #2b8a3e;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    #searchBar {
+      width: 90%;
+      margin: 15px auto;
+      display: block;
+      padding: 10px;
+      border: 2px solid #2b8a3e;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    .category {
+      margin: 20px;
+      background: #ffffffc7;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+    }
+    .cat-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #2b8a3e;
+      font-weight: bold;
+      border-bottom: 2px solid #2b8a3e;
+      padding-bottom: 5px;
+    }
+    a.service {
+      display: block;
+      text-decoration: none;
+      background: #e6ffe6;
+      color: #000;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #2b8a3e;
+      border-radius: 8px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    a.service:hover {
+      background: #2b8a3e;
+      color: #fff;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+
+<header>Bihar Services Hub — 100+ Links</header>
+<input type="text" id="searchBar" placeholder="Search service..." oninput="renderByCategory(this.value)">
+<div id="serviceContainer"></div>
+
+<script>
+  const servicesByCategory = [
+    {
+      title: "🏛 State Portals & RTPS",
+      links: [
+        { name: "Bihar State Official Portal", url: "https://state.bihar.gov.in/" },
+        { name: "ServicePlus / RTPS", url: "https://serviceonline.bihar.gov.in/" },
+        { name: "District Portals Directory", url: "https://bihar.s3waas.gov.in/" },
+        { name: "Birth & Death Certificate (e-District)", url: "https://serviceonline.bihar.gov.in/edistrict/signin" },
+        { name: "RTI / Public Grievance", url: "https://pgportal.gov.in/" }
+      ]
+    },
+    {
+      title: "📂 IDs & Certificates",
+      links: [
+        { name: "Aadhaar (UIDAI)", url: "https://uidai.gov.in/" },
+        { name: "PAN Card (NSDL/UTIITS)", url: "https://www.pan.utiitsl.com/" },
+        { name: "Voter ID (ECI)", url: "https://voterportal.eci.gov.in/" },
+        { name: "Passport Seva", url: "https://passportindia.gov.in/" },
+        { name: "DigiLocker", url: "https://digilocker.gov.in/" },
+        { name: "Certificate Download (Bihar RTPS)", url: "https://serviceonline.bihar.gov.in/rtps/onlineCertificateDownload" }
+      ]
+    },
+    {
+      title: "🌾 Agriculture & Kisan Services",
+      links: [
+        { name: "PM-Kisan Samman Nidhi", url: "https://pmkisan.gov.in/" },
+        { name: "Krishi Bihar (Agri Dept)", url: "https://agri.bihar.gov.in/" },
+        { name: "Kisan Subsidy / Input Portal", url: "https://krishi.bihar.gov.in/" },
+        { name: "Farmer Portal", url: "https://farmer.gov.in/" },
+        { name: "APMC / Agriculture Market", url: "https://apmc.bihar.gov.in/" }
+      ]
+    },
+    {
+      title: "🧑‍⚕️ Health & Social Welfare",
+      links: [
+        { name: "Bihar Health Dept", url: "https://health.bih.nic.in/" },
+        { name: "Ayushman Bharat (PM-JAY)", url: "https://pmjay.gov.in/" },
+        { name: "Sanjeevani / Hospital Info", url: "https://state.bihar.gov.in/healthbihar/CitizenHome.html" },
+        { name: "ICDS Bihar", url: "https://icdsbihar.org/" },
+        { name: "Social Welfare Dept (Bihar)", url: "https://state.bihar.gov.in/socialwelfare" },
+        { name: "Women & Child Dev", url: "https://state.bihar.gov.in/wcd" }
+      ]
+    },
+    {
+      title: "👷 Labour & Employment",
+      links: [
+        { name: "Labour Resources Dept", url: "https://labour.bih.nic.in/" },
+        { name: "E-Shram Card", url: "https://eshram.gov.in/" },
+        { name: "Skill Mission Bihar", url: "https://skillmissionbihar.org/" },
+        { name: "BSSC Recruitment", url: "https://bssc.bihar.gov.in/" },
+        { name: "BPSC Jobs", url: "https://bpsc.bih.nic.in/" }
+      ]
+    },
+    {
+      title: "🎓 Education & Exams",
+      links: [
+        { name: "Scholarship Portal (MedhaSoft)", url: "https://medhasoft.bihar.gov.in/" },
+        { name: "Bihar School Board (BSEB)", url: "https://biharboardonline.bihar.gov.in/" },
+        { name: "BCECE Board", url: "https://bceceboard.bihar.gov.in/" },
+        { name: "University Exam Updates", url: "http://exam.biharuniversity.net/" },
+        { name: "Technical Education (SBTE)", url: "https://sbte.bihar.gov.in/" }
+      ]
+    },
+    {
+      title: "🚓 Police & Public Safety",
+      links: [
+        { name: "Bihar Police Official", url: "https://www.biharpolice.bih.nic.in/" },
+        { name: "Online FIR / Citizen Services", url: "https://sevaonline.bihar.gov.in/" },
+        { name: "Fire Services", url: "https://fire.bihar.gov.in/" },
+        { name: "Home Dept Govt Bihar", url: "https://state.bihar.gov.in/home/" }
+      ]
+    },
+    {
+      title: "🚆 Transport & Travel",
+      links: [
+        { name: "Parivahan (License/RC)", url: "https://parivahan.gov.in/" },
+        { name: "IRCTC (Train Booking)", url: "https://www.irctc.co.in/" },
+        { name: "Transport Dept Bihar", url: "https://state.bihar.gov.in/transportdepartment" },
+        { name: "Bus / State Transport Info", url: "https://state.bihar.gov.in/transportdepartment/CitizenHome.html" }
+      ]
+    },
+    {
+      title: "⚡ Utilities & Welfare",
+      links: [
+        { name: "NBPDCL Electricity", url: "http://nbpdcl.co.in/" },
+        { name: "SBPDCL Electricity", url: "http://sbpdcl.co.in/" },
+        { name: "Food & Civil Supplies Dept", url: "https://state.bihar.gov.in/fcp" },
+        { name: "PFMS Payments", url: "https://pfms.nic.in/" },
+        { name: "CM Relief Fund", url: "https://cmrf.bih.nic.in/" }
+      ]
+    },
+    {
+      title: "📜 Legal & Courts",
+      links: [
+        { name: "Patna High Court", url: "http://patnahighcourt.gov.in/" },
+        { name: "District e-Courts", url: "https://districts.ecourts.gov.in/" },
+        { name: "Public Grievance / RTI", url: "https://pgportal.gov.in/" }
+      ]
+    },
+    {
+      title: "🌐 Departments & Schemes",
+      links: [
+        { name: "Agriculture Department Portal", url: "https://state.bihar.gov.in/krishi" },
+        { name: "Health Department", url: "https://state.bihar.gov.in/healthbihar" },
+        { name: "Education Department", url: "https://state.bihar.gov.in/educationbihar" },
+        { name: "Social Welfare Dept", url: "https://state.bihar.gov.in/socialwelfare" },
+        { name: "Minority Welfare", url: "https://minority.bih.nic.in/" },
+        { name: "Backward Class Welfare", url: "https://socialjustice.bih.nic.in/" },
+        { name: "Tribal Welfare", url: "https://tribal.bih.nic.in/" },
+        { name: "Environment & Forest Department", url: "https://env.bihar.gov.in/" },
+        { name: "Disaster Management Dept", url: "https://dmmc.bih.nic.in/" },
+        { name: "Marriage/Document Registration", url: "https://enibandhan.bihar.gov.in/" }
+      ]
+    }
+  ];
+
+  function renderByCategory(filter = "") {
+    const container = document.getElementById("serviceContainer");
+    container.innerHTML = "";
+    servicesByCategory.forEach(cat => {
+      const filteredLinks = cat.links.filter(l => l.name.toLowerCase().includes(filter.toLowerCase()));
+      if (filteredLinks.length > 0) {
+        const catDiv = document.createElement("div");
+        catDiv.className = "category";
+        const title = document.createElement("div");
+        title.className = "cat-title";
+        title.textContent = cat.title;
+        catDiv.appendChild(title);
+        filteredLinks.forEach(link => {
+          const a = document.createElement("a");
+          a.className = "service";
+          a.href = link.url;
+          a.target = "_blank";
+          a.textContent = link.name;
+          catDiv.appendChild(a);
+        });
+        container.appendChild(catDiv);
+      }
+    });
+  }
+
+  renderByCategory();
+</script>
+
+</body>
+</html>
